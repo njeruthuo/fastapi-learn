@@ -111,6 +111,6 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail='Could not verify credentials')
     token = create_access_token(
-        user.get('username'), user.get('role'), user.get('id'), timedelta(minutes=20))
+        user.username, user.role, user.id, timedelta(minutes=20))
 
     return {'access_token': token, 'token_type': 'bearer'}
